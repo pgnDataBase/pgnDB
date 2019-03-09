@@ -1,0 +1,39 @@
+@import "../../../globals";
+
+:host {
+  .main-div {
+    background-color: $dark-white;
+    display: block;
+    padding: $padding-medium;
+    min-height: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    .plain-row-div {
+      display: flex;
+      padding-right: $padding-small;
+      font-size: 14px;
+    }
+
+    .plain-row-item {
+      flex: 1;
+    }
+  }
+
+  .clickable:hover {
+    cursor: pointer;
+    background-color: $dark-white-lighter;
+  }
+
+  .functional {
+    min-width: 40px;
+  }
+
+  .bold {
+    font-weight: 700;
+    border-bottom: 1px solid $light-gray-darker;
+  }
+
+  .empty-field {
+    color: $dark-gray;
+  }
+}

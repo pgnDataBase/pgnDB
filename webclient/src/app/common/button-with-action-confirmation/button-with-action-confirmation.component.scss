@@ -1,0 +1,49 @@
+@import "../../../globals";
+
+:host {
+
+  .main-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-button {
+    box-shadow: $standard-shadow;
+    padding: 8px;
+    border-radius: 0.3em;
+    background-color: $warning-color;
+    border: 1px solid black;
+    font-weight: 700;
+    &:hover {
+      background-color: $warning-color-darker;
+      cursor: pointer;
+    }
+    outline: none;
+  }
+
+  .confirm-button {
+    @include green-transparent-button;
+  }
+
+  .cancel-button {
+    background-color: transparent;
+    color: $red-scarlet;
+    border: 1px solid $red-scarlet;
+    padding: 8px;
+    font-weight: 600;
+    border-radius: 0.3em;
+    outline: none;
+    &:hover {
+      cursor: pointer;
+      color: $vivid-tangerine;
+      border: 1px solid $vivid-tangerine;
+    }
+  }
+
+  .confirm-message {
+    font-size: 12px;
+    font-style: italic;
+    padding-bottom: $padding-small;
+  }
+}

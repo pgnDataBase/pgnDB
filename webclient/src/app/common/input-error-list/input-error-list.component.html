@@ -1,0 +1,7 @@
+<ng-container *ngIf="errors" >
+  <div *ngFor="let errorKey of errorCodes"
+       class="error-div"
+       [style.font-size]="fontSize">
+    <span>{{ errorKey | errorCode }}</span>
+  </div>
+</ng-container>

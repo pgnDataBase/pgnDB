@@ -1,0 +1,16 @@
+
+:host {
+  height: 100%;
+  width: 100%;
+  .main-div {
+    min-width: 200px;
+    min-height: 30px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .flex-filler {
+    flex-basis: 100%;
+  }
+}

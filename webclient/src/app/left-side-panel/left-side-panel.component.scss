@@ -1,0 +1,145 @@
+@import "../../globals.scss";
+
+:host {
+  //position: absolute;
+  z-index: 1;
+
+  .main-div {
+    min-width: 350px;
+    height: 500px;
+    padding: $padding-big;
+    padding-top: 0;
+    margin: $margin-huge $margin-medium;
+    background-color: $dark-white;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 0 20px 20px 0;
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    box-shadow: $standard-shadow;
+  }
+
+  .databases {
+    flex: 3;
+    min-height: 420px;
+    max-height: 420px;
+    overflow-y: auto;
+  }
+
+  .bottom-buttons {
+    flex: 1;
+    align-self: flex-end;
+  }
+
+  .database-div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .db-info-display {
+    padding: $padding-medium;
+    padding-left: $padding-big;
+    cursor: pointer;
+    &:hover {
+      background-color: $dark-white-lighter;
+    }
+    width: 100%;
+    &.selected-db {
+      border-left: 4px solid $intense-green;
+      background-color: $dark-white-lighter;
+      @include flex-aligned;
+      flex-direction: column;
+    }
+  }
+
+  .db-panel {
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    margin-left: $margin-small;
+    padding-right: $padding-medium;
+    .db-panel-button {
+      background-color: $light-gray;
+      flex-basis: 50%;
+      &:hover {
+        cursor: pointer;
+        background-color: $light-gray-hover;
+      }
+      border-radius: 8px;
+      font-size: 26px;
+      border: 1px solid $light-gray-darker;
+      outline: none;
+      &.filtering-enabled {
+        background-color: $warning-color;
+      }
+    }
+    .edit-button {
+      margin-bottom: $margin-small;
+    }
+  }
+
+  .smaller-font {
+    font-size: 14px;
+  }
+
+  .ownership {
+    font-size: 13px;
+    color: $dark-gray;
+    font-weight: 600;
+  }
+
+  .flip-button-not-folded {
+    position: absolute;
+    transform: translate(340px, 225px);
+  }
+
+  .when-panel-folded {
+    transform: translate(0, 225px);
+    margin-left: $margin-medium;
+  }
+
+  .no-dbs {
+    margin-bottom: $margin-big;
+    color: $dark-gray;
+    @include flex-full-centered;
+  }
+
+  .spinner-div {
+    @include flex-full-centered;
+    width: 100%;
+    // 461 not 460 because of logged in as border
+    height: 461px;
+  }
+
+  .logged-in-as {
+    @include flex-justified;
+    min-width: 100px;
+    background-color: $dark-white;
+    border: 1px solid $light-gray;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    margin-bottom: $margin-medium;
+    box-shadow: $subtle-shadow;
+
+    .logged-in-as-text {
+      @include flex-full-centered;
+      font-size: 15px;
+      font-weight: 600;
+      color: $dark-gray;
+      background-color: $dark-white;
+      height: 30px;
+    }
+
+    .close-logged-in{
+      margin-right: $margin-medium;
+      font-size: 18px;
+      color: $dark-gray;
+      cursor: pointer;
+       &:hover {
+         color: $light-gray;
+       }
+    }
+  }
+}

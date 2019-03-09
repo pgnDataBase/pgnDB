@@ -1,0 +1,21 @@
+<div  class="input-div">
+  <button class="cancel" (click)="clickedCancel()">
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </button>
+  <div>
+    <input #valueForm="ngModel"
+           chessdbInput
+           placeholder="{{placeholder}}"
+           [(ngModel)]="value"
+           [maxLength]="maxLength"
+           [required]="required"
+           type="{{type}}"
+           [style.width.px]="inputWidth"
+           class="name-input">
+    <chessdb-input-error-list [errors]="valueForm.errors" *ngIf="!valueForm.pristine"></chessdb-input-error-list>
+  </div>
+
+  <button class="confirm" (click)="clickedConfirm()" [disabled]="valueForm.invalid">
+    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+  </button>
+</div>

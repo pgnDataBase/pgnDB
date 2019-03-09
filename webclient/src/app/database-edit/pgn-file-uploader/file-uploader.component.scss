@@ -1,0 +1,28 @@
+@import "../../../globals";
+
+:host {
+  width: 240px;
+
+    .file-input {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+
+  .file-label {
+    padding: $padding-medium;
+    border: 1px solid black;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .main {
+    @include flex-aligned;
+    flex-direction: column;
+  }
+}

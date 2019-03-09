@@ -1,0 +1,10 @@
+<div *ngIf="!loggedIn" [style.height]="'100vh'">
+  <chessdb-login-screen></chessdb-login-screen>
+</div>
+<div class="main" *ngIf="loggedIn">
+  <chessdb-left-side-panel></chessdb-left-side-panel>
+  <div class="router">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<ng-template modal></ng-template>

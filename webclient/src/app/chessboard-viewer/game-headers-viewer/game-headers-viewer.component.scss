@@ -1,0 +1,140 @@
+@import "../../../globals";
+
+:host {
+  cursor: default;
+  .main-div {
+    max-height: 230px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: $dark-white-lighter;
+    padding: $padding-small;
+    border: 1px solid black;
+    width: 260px;
+  }
+
+  .detail {
+    margin: $padding-small;
+    font-size: 14px;
+  }
+
+  .details-header {
+    margin-bottom: $margin-mini;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .edit-headers {
+    &:hover {
+      cursor: pointer;
+      color: $light-gray-darker;
+    }
+  }
+
+  .edit-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .edit-row-additional {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .edit-header-label {
+    font-size: 12px;
+    padding-right: $padding-medium;
+    margin-top: 3px;
+  }
+
+  .header-input {
+    height: 10px;
+    width: 130px;
+  }
+
+  .additional-header-edit-input-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .additional-header-input {
+    height: 10px;
+    flex-basis: 90%;
+  }
+
+  .additional-header-delete {
+    margin-left: $margin-small;
+    flex-basis: 10%;
+    &:hover {
+      cursor: pointer;
+      color: $dark-gray;
+    }
+  }
+
+  .cancel-edit {
+    color: $red-scarlet;
+    padding-right: $padding-small;
+
+    &:hover:not(:disabled) {
+      cursor: pointer;
+      color: $vivid-tangerine;
+    }
+  }
+
+  .confirm-edit {
+    color: $green-cheese;
+    &:hover:not(:disabled) {
+      cursor: pointer;
+      color: $green-guacamole;
+    }
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  .loading {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    padding-top: $padding-huge;
+  }
+
+  .add-header-row {
+    height: 35px;
+    margin-top: $margin-medium;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .add-header-button {
+      @include green-transparent-button;
+      border-radius: 0.3em;
+      padding: $padding-small;
+    }
+  }
+
+  .display-header-key {
+    font-weight: 600;
+  }
+
+  .switch-edit-button {
+    @include green-transparent-button;
+    padding: $padding-small;
+    border-radius: 0.3em;
+    width: 120px;
+  }
+
+  .save-disabled {
+    &:hover {
+      cursor: not-allowed;
+    }
+    pointer-events: none;
+  }
+
+  .empty-field {
+    color: $dark-gray;
+  }
+}

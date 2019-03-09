@@ -1,0 +1,114 @@
+@import "../../../globals";
+
+:host {
+  display: block;
+  position: relative;
+
+  @mixin main-size {
+    padding: $padding-big;
+    width: 480px;
+    height: 250px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: $subtle-shadow;
+  }
+
+  .loading-wrapper {
+    @include main-size;
+    @include flex-full-centered;
+  }
+
+  .main {
+    @include main-size;
+    display: flex;
+    background-color: $main-background-color;
+
+    .engines-list-wrapper {
+      height: 200px;
+      @include scroll-y-above(200px);
+
+      .available-engine {
+        padding: $padding-small;
+        border-bottom: 1px solid $light-gray;
+        width: 130px;
+        cursor: pointer;
+        font-size: 14px;
+        &:hover {
+          background-color: $dark-white-lighter;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .engine-output {
+      margin-left: $margin-big;
+      height: 235px;
+      width: 270px;
+      background-color: $dark-white-lighter;
+      box-shadow: inset $subtle-shadow;
+
+      .results-wrapper {
+        font-size: 13px;
+        padding: $padding-small;
+        height: 200px;
+        word-wrap: break-word;
+        @include scroll-y-above(200px);
+
+        .result {
+          border-bottom: 1px solid $dark-gray;
+        }
+      }
+    }
+
+    .query-button {
+      width: 100%;
+    }
+  }
+
+  .fail-message {
+    padding: $padding-medium;
+    @include main-size;
+    @include flex-full-centered;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: 600;
+    color: $warning-color;
+
+    .close-fail-message {
+      margin-top: $margin-huge;
+      width: 100px;
+    }
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    left: 480px;
+    font-size: 24px;
+    cursor: pointer;
+
+    &:hover {
+      color: $light-gray;
+    }
+  }
+
+  .chosen-engine {
+    font-weight: 600;
+  }
+
+  .results-for {
+    border-bottom: 1px solid black;
+    font-weight: 600;
+    margin-bottom: $margin-small;
+  }
+
+  .current-fen-message {
+    font-weight: 600;
+    padding: $padding-medium;
+    color: $dark-gray;
+    word-wrap: break-word;
+
+    .fen {
+      font-size: 13px;
+    }
+  }
+}

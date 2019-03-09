@@ -1,0 +1,23 @@
+<div class="main">
+  <div class="settings-type-switch">
+    <chessdb-general-radio-buttons>
+      <chessdb-radio-button (click)="SETTINGS_VISIBLE = 'GENERIC'">Functional</chessdb-radio-button>
+      <chessdb-radio-button (click)="SETTINGS_VISIBLE = 'DISPLAY'">Display</chessdb-radio-button>
+      <chessdb-radio-button (click)="SETTINGS_VISIBLE = 'ACCOUNT'">Account</chessdb-radio-button>
+    </chessdb-general-radio-buttons>
+  </div>
+
+  <ng-container *ngIf="SETTINGS_VISIBLE === 'GENERIC'">
+    <chessdb-generic-settings></chessdb-generic-settings>
+  </ng-container>
+
+  <ng-container *ngIf="SETTINGS_VISIBLE === 'DISPLAY'">
+    <chessdb-game-display-settings>
+    </chessdb-game-display-settings>
+  </ng-container>
+
+  <ng-container *ngIf="SETTINGS_VISIBLE === 'ACCOUNT'">
+    <chessdb-account-settings></chessdb-account-settings>
+  </ng-container>
+</div>
+

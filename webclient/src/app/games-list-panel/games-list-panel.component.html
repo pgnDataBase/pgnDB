@@ -1,0 +1,44 @@
+<div class="loading" *ngIf="games == null && db != null;">
+  <chessdb-loading
+                   [size]="'48px'" [color]="'gray'" [loadingMessage]="'Loading'"></chessdb-loading>
+</div>
+<div *ngIf="!(games == null && db != null)">
+  <div *ngIf="games && games.length > 0">
+
+    <div *ngTemplateOutlet="headerRow">
+    </div>
+
+    <div class="main-scrollable">
+      <div *ngFor="let game of games">
+        <chessdb-pgn-row-display
+          [game]="game"
+          (checkedEmitter)="handleGameCheckEvent($event)">
+        </chessdb-pgn-row-display>
+      </div>
+    </div>
+    <chessdb-pagination-changer></chessdb-pagination-changer>
+  </div>
+  <div *ngIf="games && games.length === 0">
+    <div *ngTemplateOutlet="headerRow">
+    </div>
+
+    <chessdb-info-message [messageType]="'info'">
+      No games found, add them in database edition or change filters.
+    </chessdb-info-message>
+  </div>
+</div>
+<chessdb-info-message
+  class="choose-database-message"
+  [messageType]="'warning'"
+  *ngIf="db == null">
+  Please choose a database...
+</chessdb-info-message>
+
+<ng-template #headerRow>
+  <chessdb-plain-row-display [bold]="true"
+                             [values]="['White', 'Black', 'Result', 'Site', 'Event', 'Round']">
+    <chessdb-action-dropdown
+      [actions]="gamesActions"
+      (actionSelected)="handleActionSelected($event)"></chessdb-action-dropdown>
+  </chessdb-plain-row-display>
+</ng-template>

@@ -1,0 +1,19 @@
+@import "../../../globals";
+
+:host {
+  display: block;
+
+  .info {
+    @include flex-full-centered;
+    height: 100px;
+    margin-left: $margin-big;
+    width: 200px;
+    color: $dark-gray;
+    font-size: 12px;
+  }
+
+  .question-mark {
+    font-size: 26px;
+    margin-right: $margin-small;
+  }
+}

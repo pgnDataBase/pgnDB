@@ -1,0 +1,24 @@
+@import "../../../../globals";
+
+:host {
+  @include top-panel;
+  justify-content: space-between;
+  width: calc(100% - 20px);
+  font-weight: 600;
+  font-size: 13px;
+
+  input[type=checkbox] {
+    transform: scale(1.5) translateY(1px);
+  }
+
+  .variant-button {
+    min-width: 240px;
+  }
+
+  .copy-button {
+    margin: 0;
+  }
+
+  .dropdown {
+  }
+}

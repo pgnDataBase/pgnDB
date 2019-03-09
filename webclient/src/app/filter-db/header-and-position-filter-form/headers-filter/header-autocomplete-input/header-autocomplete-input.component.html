@@ -1,0 +1,17 @@
+<input (keyup)="temp()"
+       placeholder="Header key" (input)="innerValueChange($event.target.value)"
+       [(ngModel)]="innerValue" chessdbInput class="input">
+
+<div class="autocomplete-values"
+     *ngIf="autoCompletionList != null && autoCompletionList.length > 0">
+  <div
+    *ngFor="let item of autoCompletionList"
+    class="autocompletion-item"
+    [class.not-last]="isAutocompletionItemNotLast(item)"
+    (click)="itemSelected(item)">
+    {{ item }}
+  </div>
+</div>
+
+<div class="mask" *ngIf="autoCompletionList.length > 0" (click)="autoCompletionList = []">
+</div>

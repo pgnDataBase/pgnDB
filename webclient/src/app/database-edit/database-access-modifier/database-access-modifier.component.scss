@@ -1,0 +1,91 @@
+@import "../../../globals";
+
+:host {
+  $component-height: 230px;
+
+  .spinner{
+    height: $component-height;
+    @include flex-full-centered;
+  }
+
+  .main {
+    height: $component-height;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header {
+    margin: $margin-medium;
+  }
+
+  .accesses {
+    display: flex;
+  }
+
+  @mixin scrollable-wrapper() {
+    border: 1px solid $dark-gray;
+    box-shadow: $subtle-shadow;
+    min-height: 150px;
+    width: 150px;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    @include scroll-y-above(150px);
+    overflow-x: hidden;
+  }
+
+  .denied {
+    margin-right: $margin-medium;
+
+    .denied-scrollable-wrapper {
+      @include scrollable-wrapper;
+    }
+  }
+
+  .allowed {
+    .allowed-scrollable-wrapper {
+      @include scrollable-wrapper;
+    }
+  }
+
+  .user-allowed-denied {
+    display: flex;
+    justify-content: space-between;
+    padding: $padding-small;
+    &:not(.is-last) {
+      border-bottom: 1px solid $light-gray;
+    }
+
+    &:hover {
+      background-color: $bluish;
+      cursor: pointer;
+      font-weight: 600;
+
+      .allow-chevron {
+        color: $intense-green;
+      }
+      .deny-chevron {
+        color: $red-scarlet;
+      }
+    }
+  }
+
+  .no-users {
+    font-size: 15px;
+    font-weight: 600;
+    padding: $padding-small;
+    color:$great-orange;
+  }
+
+  @mixin allowed-denied-header(){
+    font-size: 14px;
+  }
+
+  .allowed-header {
+    @include allowed-denied-header;
+  }
+
+  .denied-header {
+    @include allowed-denied-header;
+  }
+}

@@ -1,0 +1,59 @@
+@import "../../../../globals";
+
+:host {
+  display: block;
+
+  .panel {
+    @include bottom-panel;
+    justify-content: space-around;
+    align-items: center;
+
+    .save-button {
+      margin-left: $margin-medium;
+      width: 150px;
+    }
+
+    .chessboard-message {
+      color: $red-crimson;
+      margin-left: $margin-huge;
+      padding: $padding-small;
+      background-color: $light-gray-hover;
+      border: 1px solid $dark-gray;
+      border-radius: 0.2em;
+      font-weight: 600;
+      width: 330px;
+
+      .header {
+        font-size: 13px;
+        margin-right: $margin-small;
+      }
+      .main-message {
+        font-size: 12px;
+      }
+    }
+
+    .tree-toggle {
+      @include flex-aligned;
+      justify-content: flex-end;
+      margin-right: $margin-medium;
+
+      width: 200px;
+      cursor: pointer;
+      &:hover {
+        color: $intense-green;
+      }
+    }
+
+    .open-tree {
+      margin-left: $margin-medium;
+      font-size: 34px;
+      transform: rotate(-90deg);
+    }
+
+    .close-tree {
+      margin-left: $margin-medium;
+      font-size: 34px;
+      transform: rotate(90deg);
+    }
+  }
+}

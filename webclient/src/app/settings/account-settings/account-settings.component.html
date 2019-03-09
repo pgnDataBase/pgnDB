@@ -1,0 +1,22 @@
+
+<div class="all-settings-wrapper">
+  <div class="setting-wrapper-div">
+    <div class="account-delete-left-wrapper">
+    <chessdb-button-with-action-confirmation *ngIf="accountDeletionInitiated === false"
+      (actionClickedAndConfirmed)="accountDeletionInitiated = true">
+      Delete account <i class="fa fa-minus-circle" aria-hidden="true"></i>
+    </chessdb-button-with-action-confirmation>
+    <chessdb-cancel-confirm-input *ngIf="accountDeletionInitiated === true"
+                                  [type]="'password'"
+                                  [placeholder]="'your password'"
+                                  [inputWidth]="120"
+                                  (clickedConfirmInput)="deleteAccount($event)"
+      (clickedCancelInput)="accountDeletionInitiated = false"></chessdb-cancel-confirm-input>
+    </div>
+    <chessdb-hint>This action will delete your pgnDB account along with all information associated with it.
+    </chessdb-hint>
+  </div>
+
+</div>
+<div class="bottom-panel">
+</div>

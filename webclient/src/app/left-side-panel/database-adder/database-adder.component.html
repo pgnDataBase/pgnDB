@@ -1,0 +1,15 @@
+<button class="add-new-db-button" *ngIf="state === 'INIT'" (click)="clickedAddDbInit()">
+  Add new <i class="fa fa-plus" aria-hidden="true"></i>
+</button>
+<div *ngIf="state === 'INPUT'">
+  <chessdb-cancel-confirm-input
+    (clickedConfirmInput)="clickedAddDb($event)"
+    [placeholder]="'Enter new db name...'"
+    [maxLength]="20"
+    (clickedCancelInput)="clickedCancel()">
+  </chessdb-cancel-confirm-input>
+</div>
+<div *ngIf="state === 'LOADING'">
+  <chessdb-loading [color]="'gray'" [size]="'26px'"></chessdb-loading>
+</div>
+

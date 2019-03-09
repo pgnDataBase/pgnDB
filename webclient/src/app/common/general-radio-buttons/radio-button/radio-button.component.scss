@@ -1,0 +1,31 @@
+@import "../../../../globals";
+
+:host {
+  display: block;
+
+  .chessdb-radio-button {
+    border-radius: $border-radius-small;
+    font-weight: 600;
+    outline: none;
+    border: 1px solid $dark-gray;
+    background-color: transparent;
+    padding: $padding-small $padding-medium;
+  }
+
+  .chosen {
+    box-shadow: inset $standard-shadow;
+    background-color: $dark-white-lighter;
+    color: $light-gray-darker;
+    pointer-events: none;
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+  :not(.chosen) {
+    box-shadow: $standard-shadow;
+    background-color: $light-gray;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

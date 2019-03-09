@@ -1,0 +1,47 @@
+@import "../../globals";
+
+:host {
+  #board {
+    width:100%;
+    height:100%;
+  }
+
+  #board-wrapper {
+    height: 500px;
+    width: 500px;
+    grid-area: a;
+  }
+
+  .loading {
+    margin-top: 100px;
+  }
+
+  .buttons-div {
+    .btn-group {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .flip-button {
+    width: 100%;
+  }
+
+  .right-div {
+    grid-area: b;
+  }
+
+  .details-and-buttons-panel {
+    grid-area: c;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  padding: $padding-big;
+  display: grid;
+  grid-template: "a a b b"
+                 "a a b b"
+                 "c c b b"
+  ;
+  grid-gap: 20px;
+}

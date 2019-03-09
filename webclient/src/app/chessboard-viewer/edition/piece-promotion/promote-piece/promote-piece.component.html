@@ -1,0 +1,29 @@
+<div class="mask">
+</div>
+
+<div class="wrapper">
+  <div class="main">
+    <div class="header">
+      Choose promoted piece
+    </div>
+
+    <div class="figures">
+      <div (click)="chosen('QN')" class="piece-div">
+        <span>QUEEN</span>
+        <span [innerHtml]="unicodePromotedPiece('QN')" class="piece"></span>
+      </div>
+      <div (click)="chosen('BP')" class="piece-div">
+        <span>BISHOP</span>
+        <span [innerHtml]="unicodePromotedPiece('BP')" class="piece"></span>
+      </div>
+      <div (click)="chosen('RK')" class="piece-div">
+        <span>ROOK</span>
+        <span [innerHtml]="unicodePromotedPiece('RK')" class="piece"></span>
+      </div>
+      <div (click)="chosen('KT')" class="piece-div">
+        <span>KNIGHT</span>
+        <span [innerHtml]="unicodePromotedPiece('KT')" class="piece"></span>
+      </div>
+    </div>
+  </div>
+</div>

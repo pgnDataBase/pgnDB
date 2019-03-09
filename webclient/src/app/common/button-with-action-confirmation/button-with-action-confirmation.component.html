@@ -1,0 +1,20 @@
+<div class="main-div">
+  <ng-container *ngIf="state === 'INIT'">
+    <button (click)="clickedInitAction()" class="main-button">
+      <ng-content></ng-content>
+    </button>
+  </ng-container>
+  <ng-container *ngIf="state === 'CONFIRM'">
+    <div class="confirm-message">
+      Confirm selected action
+    </div>
+    <div>
+      <button class="confirm-button" (click)="clickedConfirm()">
+        Confirm
+      </button>
+      <button class="cancel-button" (click)="clickedCancel()">
+        Cancel
+      </button>
+    </div>
+  </ng-container>
+</div>

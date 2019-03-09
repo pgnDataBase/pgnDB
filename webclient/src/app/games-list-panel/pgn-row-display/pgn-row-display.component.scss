@@ -1,0 +1,7 @@
+@import "../../../globals";
+
+:host {
+  input[type=checkbox] {
+    transform: scale(1.5);
+  }
+}

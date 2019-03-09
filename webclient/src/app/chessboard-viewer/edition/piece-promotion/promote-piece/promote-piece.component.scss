@@ -1,0 +1,57 @@
+@import "../../../../../globals";
+
+:host {
+
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    @include flex-full-centered;
+  }
+
+  .mask {
+    box-shadow: $standard-shadow;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(200, 200, 200,0.6);
+  }
+
+  .main {
+    padding: $padding-huge;
+    background-color: $dark-white;
+    width: 350px;
+    height: 150px;
+    @include flex-full-centered;
+    flex-direction: column;
+    border-radius: 10px;
+
+    .header {
+      font-size: 22px;
+      margin-bottom: $margin-big;
+    }
+
+    .figures {
+      @include flex-full-centered;
+    }
+
+    .piece {
+      font-size: 36px;
+    }
+
+    .piece-div {
+      @include flex-full-centered;
+      flex-direction: column;
+      padding: $padding-medium;
+      cursor: pointer;
+      &:hover {
+        background-color: $light-gray;
+      }
+    }
+  }
+
+}

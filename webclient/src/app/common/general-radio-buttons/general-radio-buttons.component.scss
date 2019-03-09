@@ -1,0 +1,6 @@
+@import "../../../globals";
+
+:host {
+  display: block;
+  @include flex-full-centered;
+}

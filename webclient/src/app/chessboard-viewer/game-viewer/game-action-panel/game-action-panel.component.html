@@ -1,0 +1,22 @@
+<div class="dropdown">
+  <chessdb-action-dropdown
+    [dropdownDisabled]="currentMove == null"
+    (actionSelected)="moveActionSelected($event)"
+    [dropWidth]="160"
+    [actions]="moveActions" [titleText]="'Current move'">
+  </chessdb-action-dropdown>
+</div>
+<div class="flex-one flex-right-justified">
+  <chessdb-general-radio-buttons>
+    <chessdb-radio-button (click)="changeRestrictionToVariants(false)" [currentlyActive]="!restrictDisplayToVariant">
+      All variants
+    </chessdb-radio-button>
+    <chessdb-radio-button (click)="changeRestrictionToVariants(true)" [currentlyActive]="restrictDisplayToVariant">
+      Current variant
+    </chessdb-radio-button>
+  </chessdb-general-radio-buttons>
+</div>
+<div class="flex-one flex-right-justified">
+  <ng-content></ng-content>
+</div>
+

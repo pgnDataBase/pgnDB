@@ -1,0 +1,17 @@
+@import "../../../globals.scss";
+
+:host {
+  .round-button {
+    background-color: $dark-white;
+    outline: none;
+    border-radius: 54px;
+
+    &:hover {
+      background-color: $dark-white-lighter;
+      cursor: pointer;
+    }
+  }
+  .button-icon {
+    font-size: 54px;
+  }
+}

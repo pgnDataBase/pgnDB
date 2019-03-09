@@ -1,0 +1,52 @@
+<div *ngIf="currentGame == null">
+  <chessdb-info-message [messageType]="'warning'">No game selected</chessdb-info-message>
+</div>
+<div *ngIf="currentGame != null">
+  <chessdb-game-action-panel
+    (openTreeOnMove)="onOpenTreeOnMove($event)"
+    [currentMove]="currentMove"
+    [currentGame]="currentGame"
+    [isTreeVisible]="treeVisible"
+    (displayEntitiesChanged)="onDisplayEntitiesChanged($event)">
+    <div *ngIf="entitiesToDisplay.length > entitiesPageSize" class="flex-justified">
+      <button chessdbButton
+              [hasRightNeighbour]="true"
+              [disabled]="!showEarlierMovesVisible"
+              [noMargin]="true"
+              (click)="showEarlierMovesClicked()"><span class="fat-font"> < </span>Earlier moves
+      </button>
+      <button chessdbButton
+              [hasLeftNeighbour]="true"
+              [disabled]="!showLaterMovesVisible"
+              [noMargin]="true"
+              (click)="showLaterMovesClicked()">Later moves >
+      </button>
+    </div>
+  </chessdb-game-action-panel>
+</div>
+<div class="main-div" *ngIf="currentGame != null" [style.max-height.px]="treeVisible ? 310 : 610">
+
+  <!-- those spans are very strange hack for automatic right area stretching, but couldn't come up with something
+       better for now -->
+  <span *ngFor="let x of tempFillerTable" style="width: 30px; height: 0;"></span>
+  <span class="flex-filler"></span>
+
+  <ng-container *ngFor="let entity of entitiesToDisplayPaginated">
+    <span class="flex-filler"
+          *ngIf="entity.variantType === 'VB' && variantDepthMap[entity.variantId]?.hasMoreVariantsInside"></span>
+    <chessdb-game-entity-viewer
+      [entity]="entity"
+      [currentMove]="currentMove"
+      [variantDepth]="variantDepthMap[entity.variantId]?.depthLevel"
+      [hasMoreVariantsInside]="variantDepthMap[entity.variantId]?.hasMoreVariantsInside"
+      (clickedOnEntityEmitter)="onEntityClicked($event)">
+    </chessdb-game-entity-viewer>
+    <!--<span class="flex-filler" *ngIf="entity.variantType === 'VE'"></span>-->
+  </ng-container>
+</div>
+<div *ngIf="currentGame != null">
+  <chessdb-game-viewer-bottom-panel [currentGame]="currentGame"
+                                    [treeVisible]="treeVisible"
+                                    (treeVisibleChanged)="treeVisible = $event; treeVisibleChanged.next($event)">
+  </chessdb-game-viewer-bottom-panel>
+</div>

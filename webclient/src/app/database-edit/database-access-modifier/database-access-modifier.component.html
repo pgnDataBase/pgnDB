@@ -1,0 +1,42 @@
+
+<div class="main" *ngIf="!performingAction">
+  <h4 class="header">User access</h4>
+
+  <div class="accesses">
+    <div class="denied">
+      <div class="denied-header">Denied</div>
+      <div class="denied-scrollable-wrapper">
+        <div *ngFor="let userDenied of usersDenied;last as isLast"
+             class="user-allowed-denied"
+             [class.is-last]="isLast"
+             (click)="addUserAccess(userDenied)">
+          <div>{{ userDenied }}</div>
+          <i class="fa fa-chevron-right allow-chevron" aria-hidden="true"></i>
+        </div>
+        <div *ngIf="usersDenied.length === 0" class="no-users">
+          No users
+        </div>
+      </div>
+    </div>
+
+    <div class="allowed">
+    <div class="allowed-header">Allowed</div>
+      <div class="allowed-scrollable-wrapper">
+        <div *ngFor="let userAllowed of usersAllowed;last as isLast"
+             class="user-allowed-denied"
+             [class.is-last]="isLast"
+             (click)="removeUserAccess(userAllowed)">
+          <i class="fa fa-chevron-left deny-chevron" aria-hidden="true"></i>
+          <div>{{ userAllowed }}</div>
+        </div>
+        <div *ngIf="usersAllowed.length === 0" class="no-users">
+          No users
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="performingAction" class="spinner">
+  <chessdb-loading [color]="'gray'"></chessdb-loading>
+</div>

@@ -1,0 +1,13 @@
+@import "../globals";
+
+:host {
+  .main {
+    display: flex;
+    height: 100%;
+  }
+
+  .router {
+    @include flex-justified;
+    width: 100%;
+  }
+}

@@ -1,0 +1,18 @@
+<div class="mask"></div>
+<div class="wrapper">
+  <div class="modal-info">
+    <div *ngIf="messageTitle" class="title-div">
+      <span>{{ messageTitle }}</span>
+    </div>
+    <div *ngIf="messageTitle == null && messageContent == null">
+      Unknown title and content of message.
+    </div>
+    <div *ngIf="messageContent" class="message-content-div">
+      <span>{{ messageContent }}</span>
+    </div>
+    <button chessdbButton class="close-button" (click)="closeModal()">
+      <span>{{ closeButtonMessage ? closeButtonMessage : 'Close' }}</span>
+    </button>
+  </div>
+</div>
+

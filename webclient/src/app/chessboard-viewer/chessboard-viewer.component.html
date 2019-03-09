@@ -1,0 +1,55 @@
+<div id="board-wrapper">
+  <div id="board"></div>
+</div>
+<chessdb-loading *ngIf="currentGame == null" [color]="'gray'" class="loading"
+                 [size]="'48px'" [loadingMessage]="'Loading game'"></chessdb-loading>
+<ng-container
+  *ngIf="currentGame != null;">
+
+  <div class="details-and-buttons-panel">
+    <div>
+      <chessdb-game-headers-viewer></chessdb-game-headers-viewer>
+    </div>
+
+    <div class="buttons-div">
+      <chessdb-move-action-panel
+        [currentMoves]="currentGame.moveList"
+        [currentMove]="currentMove"
+        (currentMoveChanged)="onCurrentMoveChanged($event)"
+        class="btn-group">
+      </chessdb-move-action-panel>
+      <div>
+        <!-- jak dla mnie to to jest do wywalenia... funkcjonalnosc bez sensu -->
+    <!--<span class="btn-group">-->
+      <!--<button chessdbButton [hasRightNeighbour]="true" [width]="'100px'"-->
+              <!--(click)="clickedDecrease()" [disabled]="!canDecrease">-->
+        <!--Decrease - -->
+      <!--</button>-->
+    <!--<button chessdbButton [hasLeftNeighbour]="true" [width]="'100px'"-->
+            <!--(click)="clickedEnlarge()" [disabled]="!canEnlarge">-->
+      <!--Enlarge +-->
+    <!--</button>-->
+    <!--</span>-->
+        <span class="btn-group">
+          <button (click)="flip()" chessdbButton class="flip-button">Flip board</button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-div">
+    <chessdb-game-viewer
+      (treeVisibleChanged)="treeInitialMove = null; treeViewerVisible = $event"
+      (openTreeOnMove)="treeInitialMove = $event; treeViewerVisible = true;"
+      [currentGame]="currentGame"
+      [currentMove]="currentMove"
+      (entityClickedEmitter)="onCurrentMoveChanged($event)">
+    </chessdb-game-viewer>
+    <chessdb-tree-viewer
+      *ngIf="treeViewerVisible"
+      (changeChessboardPositionFromTree)="positionChangeFromTree($event)"
+      [currentMove]="currentMove"
+      [initialMove]="treeInitialMove"></chessdb-tree-viewer>
+  </div>
+</ng-container>
+

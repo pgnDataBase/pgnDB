@@ -1,0 +1,27 @@
+<div class="main-div">
+  <button chessdbButton [hasRightNeighbour]="true"
+          (click)="clickedPageBack()"
+          [disabled]="!canDecrease">
+    <span class="fat-font"><</span> Page back
+  </button>
+  <button chessdbButton [hasLeftNeighbour]="true"
+          (click)="clickedPageForward()" [disabled]="!canIncrease">
+    Page forward <span class="fat-font">></span>
+  </button>
+  <!-- +1 in display of pages because programatically we count them from 0 but want to display
+  for user from 1 -->
+  <span class="curr-page">Page: {{currPage + 1}} / {{maxPage + 1}}</span>
+  <input type="number"
+         class="input-in-between"
+         [(ngModel)]="gotoPage"
+          chessdbInput>
+  <button chessdbButton
+          class="goto-button"
+          [hasLeftNeighbour]="true"
+          (click)="handleClickedGotoPage()"
+          [disabled]="!canGoToPage(gotoPage)">
+    Go to <span class="fat-font">>></span>
+  </button>
+</div>
+
+

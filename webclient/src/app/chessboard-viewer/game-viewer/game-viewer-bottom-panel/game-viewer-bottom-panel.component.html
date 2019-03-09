@@ -1,0 +1,21 @@
+
+<div class="panel">
+  <button actionButton class="save-button" (click)="clickedSaveGame()">
+    <div *ngIf="!saving">Save changes</div>
+    <chessdb-loading *ngIf="saving" [size]="'19px'" [color]="'white'" style="height: 100%"></chessdb-loading>
+  </button>
+  <div  class="chessboard-message" [style.opacity]="validationException != null ? opacityOfErrorMessage : 0">
+    <span class="header">{{ validationException?.headerMessage ? validationException.headerMessage : 'Unknown error '}}</span>
+    <span class="main-message">{{ validationException?.mainMessage | trim:50 }}</span>
+  </div>
+
+  <div *ngIf="!treeVisible" (click)="treeVisible = true; treeVisibleChanged.next(true)" class="tree-toggle">
+    Open statistics <i class="fa fa-arrow-circle-o-right open-tree" aria-hidden="true"></i>
+  </div>
+  <div *ngIf="treeVisible" (click)="treeVisible = false; treeVisibleChanged.next(false)" class="tree-toggle">
+    Hide statistics <i class="fa fa-arrow-circle-o-right close-tree" aria-hidden="true"></i>
+  </div>
+
+
+
+</div>

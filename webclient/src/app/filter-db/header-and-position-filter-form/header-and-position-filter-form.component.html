@@ -1,0 +1,48 @@
+<div class="filter-form-wrapper">
+  <div class="top-filters-panel">
+    <h3
+      [class.active-filter]="HEADERS_FILTER_ACTIVE">
+      Headers filter
+    </h3>
+
+    <chessdb-general-radio-buttons>
+      <chessdb-radio-button (click)="displayMode = 'HEADERS'">Headers</chessdb-radio-button>
+      <chessdb-radio-button (click)="displayMode = 'POSITIONS'">Positions</chessdb-radio-button>
+    </chessdb-general-radio-buttons>
+
+    <h3 [class.active-filter]="POSITIONS_FILTER_ACTIVE">Positions filter</h3>
+  </div>
+
+  <div class="headers-and-position-filter">
+    <chessdb-headers-filter *ngIf="displayMode === 'HEADERS'"
+                            [initialFilters]="headerFilters"
+                            (headerFiltersChanged)="onHeadersFilterChanged($event)">
+    </chessdb-headers-filter>
+    <chessdb-positions-filter *ngIf="displayMode === 'POSITIONS'"
+                              [initialFilterState]="positionFilters"
+                              (positionFiltersChanged)="onPositionsFilterChanged($event)">
+    </chessdb-positions-filter>
+  </div>
+
+  <div class="save-filters-panel">
+    <chessdb-general-radio-buttons>
+      <chessdb-radio-button (click)="filterMode = 'CURRENT'">For current db</chessdb-radio-button>
+      <chessdb-radio-button (click)="filterMode = 'ALL'">For all dbs</chessdb-radio-button>
+    </chessdb-general-radio-buttons>
+
+    <div>
+      <button chessdbButton
+              [hasRightNeighbour]="true"
+              (click)="deleteFilterClicked()">
+        Delete filters
+      </button>
+      <button chessdbButton
+              [hasLeftNeighbour]="true"
+              [disabled]="!isPositionFilterActive() && !isHeadersFilterActive()"
+              (click)="applyFilterClicked()">
+        Apply filters
+      </button>
+    </div>
+  </div>
+</div>
+

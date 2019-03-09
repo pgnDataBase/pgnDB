@@ -1,0 +1,69 @@
+@import "../../../../globals";
+
+:host {
+  margin: $margin-medium;
+
+  .chessboard-display {
+    display: block;
+    width: 400px;
+  }
+
+  .position-filter {
+    margin: $margin-medium;
+  }
+
+  .fen-inputs-div {
+    padding: $padding-small;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .scrollable {
+    @include scroll-y-above(300px);
+  }
+
+  .fen-input {
+    margin: $margin-small;
+    width: 260px;
+    font-size: 10px;
+  }
+
+  .board-and-fens {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .position-filter-panel {
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  input[type=checkbox] {
+    transform: scale(1.5);
+  }
+
+  .include-variants-label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .delete-fen {
+    &:hover:not(:disabled) {
+      cursor: pointer;
+      color: $dark-gray;
+    }
+  }
+
+  .add-manually-button {
+    @include green-transparent-button;
+    font-size: 12px;
+  }
+
+  .include-variants {
+    margin-bottom: $margin-small;
+    @include flex-justified;
+  }
+}

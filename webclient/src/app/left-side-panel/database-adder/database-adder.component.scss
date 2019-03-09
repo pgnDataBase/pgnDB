@@ -1,0 +1,11 @@
+@import "../../../globals.scss";
+
+:host {
+  display: flex;
+  justify-content: center;
+
+  .add-new-db-button {
+    @include green-transparent-button;
+    border-radius: 0.3em;
+  }
+}

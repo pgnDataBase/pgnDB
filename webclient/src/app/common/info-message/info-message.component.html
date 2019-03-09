@@ -1,0 +1,11 @@
+<div class="main"
+     [style.font-size]="fontSize"
+     [ngClass]="
+     {'info' : messageType === 'info',
+      'warning' : messageType === 'warning',
+       'error' : messageType === 'error'}">
+  <ng-content>
+  </ng-content>
+</div>
+
+

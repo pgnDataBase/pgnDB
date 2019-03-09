@@ -1,0 +1,57 @@
+<div (click)="clickedOnEntity()" *ngIf="entity.variantType != 'VE'; else variantEndMarker"
+     class="main-div"
+     [style.margin-left]="(hasMoreVariantsInside && entity.variantType === 'VB')
+      ? (variantDepth * depthMargin + 'px') : '0'"
+     [style.border-bottom]="(entity?.variantId != null && DISPLAY_coloredVariantBorders)
+      ? '3px solid ' + variantColor : '1px solid #d9dad9'"
+     [style.border-left]=
+       "DISPLAY_coloredVariantBorders && (entity?.variantType == 'VB' || entity?.variantType == 'VS')
+      ? '3px solid ' + variantColor : '1px solid #d9dad9'"
+     [class.selected]="currentMove != null && currentMove.id === entity.id"
+     [class.variant-beginning]="entity.variantType == 'VB'"
+     [class.variant-single]="entity.variantType == 'VS'"
+     [class.variant-end]="entity.variantType == 'VE'">
+  <div class="main-info">
+    <!--{{ entity.moveNumber }} DEBUG ONLY -->
+    <span class="move-number">
+      {{ getMoveNumberToDisplay() }}
+    </span>
+    <span *ngIf="entity.variantId" class="variant-info">
+      V{{ entity.variantId }}
+    </span>
+    <span *ngIf="entity.toField" class="move">
+
+      <span class="piece-unicode-display" [style.font-size]="VISUAL_pieceFontSize + 'px'"
+            [innerHtml]="translatePieceToUnicode(entity.pieceCode)" *ngIf="displayImagePieces">
+      </span>
+
+      {{ translatePieceCodeToDisplay(entity.pieceCode) }}
+        <span class="to-field">
+          {{ entity.toField.toLowerCase() }}
+        </span>
+    </span>
+  </div>
+  <div class="comment-div" *ngIf="entity?.comment != null">
+    <i class="fa fa-comment comment-icon" *ngIf="!displayCommentEdition"
+       (click)="displayCommentEdition = !displayCommentEdition"></i>
+    <i class="fa fa-check comment-icon" *ngIf="displayCommentEdition" (click)="displayCommentEdition = !displayCommentEdition"></i>
+    <div *ngIf="VISUAL_commentsAlwaysVisible && !displayCommentEdition" class="comment-text">
+      {{ entity.comment }}
+    </div>
+    <input [ngModel]="entity.comment"
+           (change)="entity.comment = ($event.target.value != null && $event.target.value.length > 0) ?
+            $event.target.value : null"
+           *ngIf="displayCommentEdition" class="edit-comment-input">
+  </div>
+</div>
+<ng-template #variantEndMarker>
+  <div class="variant-end variant-end-marker"
+       [style.border-bottom]="(entity?.variantId != null && DISPLAY_coloredVariantBorders)
+      ? '3px solid ' + variantColor : '1px solid #d9dad9'"
+    [style.border-right]="DISPLAY_coloredVariantBorders &&
+     (entity?.variantType == 'VE' || entity?.variantType == 'VS')
+      ? '3px solid ' + variantColor : '1px solid #d9dad9'">
+  </div>
+</ng-template>
+
+

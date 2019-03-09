@@ -1,0 +1,21 @@
+{
+  "database": {
+    "driver": "org.postgresql.Driver",
+    "url": "jdbc:postgresql://172.18.0.2:5432/maindb",
+    "username": "admin",
+    "password": "admin",
+    "maximumPoolSize": 2,
+    "connectionTimeout": 30000
+  },
+  "security": {
+    "encryptionSecret": "super-super-secret",
+    "jwtSecret": "dghdvtg23fgJNJJUedffcc..",
+    "jwtExpirationMinutes": 240,
+    "cors": ["*"]
+  },
+  "engine": {
+    "engineUrl": "http://10.0.2.2:7080",
+    "login": "test",
+    "password": "111111"
+  }
+}

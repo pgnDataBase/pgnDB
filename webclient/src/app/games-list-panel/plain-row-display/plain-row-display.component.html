@@ -1,0 +1,13 @@
+<div class="main-div"
+     [class.clickable]="clickable"
+     [class.bold]="bold">
+  <div class="plain-row-div">
+    <span class="functional">
+      <ng-content></ng-content>
+    </span>
+    <span class="plain-row-item" *ngFor="let value of values"
+          [class.empty-field]="value == null || value.length === 0">
+      {{(value ? value : 'Field is empty') | trim }}</span>
+  </div>
+</div>
+

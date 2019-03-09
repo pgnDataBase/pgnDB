@@ -1,0 +1,84 @@
+
+<div class="loading-wrapper" *ngIf="isLoading">
+  <chessdb-loading [size]="'36px'" [color]="'gray'"></chessdb-loading>
+</div>
+
+<div *ngIf="!isLoading && !isFail" class="main">
+  <div>
+    <div class="engines-list-wrapper">
+      <div *ngFor="let engine of availableEngines"
+           class="available-engine"
+           (click)="chosenEngine = engine"
+           [class.chosen-engine]="chosenEngine === engine">
+        {{ engine.name | trim:15 }}
+      </div>
+      <div *ngIf="availableEngines == null || availableEngines.length === 0">
+        No engines...
+      </div>
+    </div>
+    <button chessdbButton class="small-radius query-button"
+            [disabled]="currentMove == null || chosenEngine == null"
+            (click)="startQueryingEngine()" *ngIf="!isQueryingEngine">
+      Query engine
+    </button>
+    <button chessdbButton class="small-radius query-button"
+            (click)="stopQueryingEngine()" *ngIf="isQueryingEngine">
+      Stop engine
+    </button>
+  </div>
+  <div>
+    <div class="engine-output">
+      <ng-container *ngIf="currentEngineResults != null && currentEngineResults.length > 0">
+        <div class="results-wrapper">
+          <div class="results-for">
+            Results for {{ queryingFor.fen }}
+          </div>
+          <div *ngFor="let result of currentEngineResults" class="result">
+            Fen: {{ result.fen }} <br>
+            Depth: {{ result.depth }} <br>
+            Moves chain: {{ result.movesChain }} <br>
+            Score centi pawn: {{ result.scoreCentiPawn }} <br>
+            Time: {{ result.time }}
+          </div>
+        </div>
+      </ng-container>
+      <ng-container
+        *ngIf="!(currentEngineResults != null && currentEngineResults.length > 0) && !isQueryingEngine">
+        <div *ngIf="currentMove != null" class="current-fen-message">
+          Fen of currently selected move:
+          <div class="fen">
+            {{ currentMove.fen }}
+          </div>
+        </div>
+        <div class="current-fen-message" *ngIf="currentMove == null">
+          No move is selected. <br>
+          To query engine select a move.
+        </div>
+      </ng-container>
+      <div>
+        <!-- this div is for placeholder purpose only -->
+        <div class="results-wrapper"
+             *ngIf="!(currentEngineResults != null && currentEngineResults.length > 0)"></div>
+        <chessdb-loading [loadingMessage]="'Querying for results...'" *ngIf="isQueryingEngine"
+                         [size]="'18px'"
+                         [color]="'gray'">
+        </chessdb-loading>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="isFail" class="fail-message">
+  <div>
+    {{ failMessage }}
+  </div>
+  <button chessdbButton class="small-radius close-fail-message"
+          (click)="isFail = false; failMessage = ''">
+    Close
+  </button>
+</div>
+
+<div class="close-button">
+  <i class="fa fa-times" aria-hidden="true" (click)="closeButtonClicked.next()"></i>
+</div>

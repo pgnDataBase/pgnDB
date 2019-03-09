@@ -1,0 +1,27 @@
+@import "../../../globals";
+
+:host {
+  .all-settings-wrapper {
+    min-height: 330px;
+  }
+
+  .setting-wrapper-div {
+    @include flex-full-centered;
+    flex-direction: column;
+    margin: $margin-big 0;
+  }
+
+  .setting-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: $margin-small;
+  }
+
+  .bottom-panel {
+    @include bottom-panel;
+  }
+
+  .save-button {
+    margin: 0;
+  }
+}

@@ -1,0 +1,74 @@
+<div *ngIf="loading" class="loading-div">
+  <chessdb-loading
+    [loadingMessage]="'Loading...'"
+    [color]="'gray'">
+  </chessdb-loading>
+</div>
+
+<ng-container *ngIf="!loading">
+  <div *ngIf="database" class="main">
+    <h3 class="header" *ngIf="isOwner">
+      You are editing: {{ database.name }}
+    </h3>
+    <h4 *ngIf="!isOwner" class="header">
+      Editing {{ database.name }}, only limited actions allowed
+    </h4>
+    <div class="medium-padded delete-export min-height">
+      <ng-container *ngIf="isOwner">
+        <div class="delete-wrapper">
+          <chessdb-button-with-action-confirmation
+            class="delete-db-button"
+            *loadingWhen="loadingDeletion;Msg: 'Deleting...';Color: 'gray';Padding: '5px'"
+            (actionClickedAndConfirmed)="databaseDeleteClicked()">
+            Delete this database <i class="fa fa-trash" aria-hidden="true"></i>
+          </chessdb-button-with-action-confirmation>
+        </div>
+      </ng-container>
+
+      <div class="export-wrapper">
+        <chessdb-button-with-action-confirmation
+          class="export-db-button"
+          *loadingWhen="loadingFileExport;Padding: '5px';Msg: 'Exporting...';Color: 'gray'"
+          (actionClickedAndConfirmed)="exportDatabaseClicked()">
+          Export this database to file <i class="fa fa-download" aria-hidden="true"></i>
+        </chessdb-button-with-action-confirmation>
+      </div>
+    </div>
+
+    <div separator></div>
+
+    <div class="medium-padded min-height">
+      <file-uploader [dbName]="database.name"></file-uploader>
+      <chessdb-database-merger [currentDatabase]="database"></chessdb-database-merger>
+    </div>
+
+    <div separator></div>
+
+    <div class="medium-padded" *ngIf="isOwner">
+      <chessdb-database-access-modifier [currentDatabase]="database"></chessdb-database-access-modifier>
+    </div>
+  </div>
+
+  <ng-container *ngIf="!isOwner">
+    <div separator></div>
+
+    <div class="own-access-remove">
+      <chessdb-button-with-action-confirmation class="remove-own-button"
+                                               (actionClickedAndConfirmed)="removeOwnAccess()">
+        Remove your access <i class="fa fa-ban" aria-hidden="true"></i>
+      </chessdb-button-with-action-confirmation>
+      <chessdb-hint>
+        You have been given access to this database by other user,
+        but you can remove it.
+      </chessdb-hint>
+    </div>
+  </ng-container>
+
+
+  <div *ngIf="!loading && !database">
+    <chessdb-info-message [messageType]="'error'"
+                          *loadingWhen="loadingAccessRemoval;Padding: '5px';Msg: 'Removing...';Color: 'gray'">
+      No database selection detected!
+    </chessdb-info-message>
+  </div>
+</ng-container>

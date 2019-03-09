@@ -1,0 +1,31 @@
+@import "../../../globals";
+
+:host {
+
+  .filter-form-wrapper {
+    max-width: 750px;
+    padding: $padding-medium;
+  }
+
+  .headers-and-position-filter {
+    @include flex-justified;
+    min-width: 750px;
+    min-height: 480px;
+  }
+
+  h3 {
+    color: $light-gray;
+  }
+
+  .active-filter {
+    color: $dark-gray;
+  }
+
+  .top-filters-panel {
+    @include top-panel;
+  }
+
+  .save-filters-panel {
+    @include bottom-panel;
+  }
+}

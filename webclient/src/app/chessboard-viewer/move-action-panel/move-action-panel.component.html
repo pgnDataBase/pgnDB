@@ -1,0 +1,33 @@
+<button chessdbButton
+        [hasRightNeighbour]="true"
+        (click)="clickedToStartMove()"
+        [disabled]="!canMoveToStartMove"
+        [width]="'50px'"
+>
+  <<
+</button>
+<button chessdbButton
+        [hasRightNeighbour]="true"
+        [hasLeftNeighbour]="true"
+        (click)="clickedToPrevMove()"
+        [disabled]="!canMoveBackward"
+        [width]="'50px'">
+  <
+</button>
+<button chessdbButton
+        [hasLeftNeighbour]="true"
+        [hasRightNeighbour]="true"
+        (click)="clickedToNextMove()"
+        [disabled]="!canMoveForward"
+        [width]="'50px'">
+  >
+</button>
+<button chessdbButton
+        [hasLeftNeighbour]="true"
+        (click)="clickedToEndMove()"
+        [disabled]="!canMoveToEndMove"
+        [width]="'50px'"
+>
+  >>
+</button>
+

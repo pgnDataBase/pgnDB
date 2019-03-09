@@ -1,0 +1,60 @@
+version: '3'
+services:
+  pgndb-database:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    image: pgndb-database:1.0.0
+    container_name: pgndb-database
+    restart: always
+    volumes:
+    - pgndb-data:/var/lib/postgresql
+    networks:
+      backend:
+        ipv4_address: 172.18.0.2
+    ports:
+    - "0.0.0.0:5432:5432"
+  pgndb-frontend:
+    build:
+      context: ./deployment
+      dockerfile: Dockerfile
+    image: pgndb-frontend:1.0.0
+    container_name: pgndb-frontend
+    restart: always
+    networks:
+      frontend:
+        ipv4_address: 172.19.0.2
+    ports:
+    - "0.0.0.0:4200:80"
+  pgndb-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pgndb-backend:1.0.0
+    container_name: pgndb-backend
+    restart: always
+    depends_on:
+    - "pgndb-database"
+    networks:
+      backend:
+        ipv4_address: 172.18.0.3
+      frontend:
+        ipv4_address: 172.19.0.3
+    ports:
+    - "0.0.0.0:9095:9095"
+
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.18.0.0/16
+  frontend:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.19.0.0/16
+volumes:
+  pgndb-data:

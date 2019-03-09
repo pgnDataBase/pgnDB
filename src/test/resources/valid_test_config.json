@@ -1,0 +1,21 @@
+{
+  "database": {
+    "driver": "test.Driver",
+    "url": "test-url:9909",
+    "username": "test-username",
+    "password": "test-password",
+    "maximumPoolSize": 2,
+    "connectionTimeout": 300
+  },
+  "security": {
+    "encryptionSecret": "awesrtytujghgfdsew3",
+    "jwtSecret": "dxxsfdeqwrthyt54",
+    "jwtExpirationMinutes": 240,
+    "cors": ["http://172.19.0.2:4200"]
+  },
+  "engine": {
+    "engineUrl": "http://10.0.2.2:7080",
+    "login": "test",
+    "password": "111111"
+  }
+}

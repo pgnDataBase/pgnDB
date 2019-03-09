@@ -1,0 +1,50 @@
+@import "../../../globals";
+
+:host {
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    @include flex-full-centered;
+  }
+
+  .mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(200, 200, 200,0.6);
+  }
+
+  .modal-info {
+    box-shadow: $standard-shadow;
+    padding: $padding-big;
+    background-color: $dark-white;
+    justify-content: space-between;
+    @include flex-aligned;
+    flex-direction: column;
+    border-radius: 10px;
+
+    min-width: 200px;
+    min-height: 100px;
+  }
+
+  .title-div {
+    padding: $padding-medium;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .message-content-div {
+    padding: $padding-medium;
+  }
+
+  .close-button {
+    margin-top: $margin-medium;
+    width: 150px;
+    border-radius: 0.2em;
+  }
+}

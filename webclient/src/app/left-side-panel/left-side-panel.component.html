@@ -1,0 +1,72 @@
+<div class="main-div" *ngIf="showPanel">
+
+  <div class="logged-in-as" *ngIf="!isLoadingDatabases">
+    <div class="logged-in-as-text">
+      Logged in as {{ loggedInAs }}
+    </div>
+  </div>
+
+  <div class="databases" *ngIf="!isLoadingDatabases;else spinner">
+    <div *ngFor="let database of chessDatabases">
+      <div class="database-div">
+        <div class="db-info-display" [class.selected-db]="currentDb?.id === database?.id"
+             (click)="clickedDbInfo(database)">
+          <div>{{ database.name }}</div>
+          <div class="smaller-font">Database id: {{ database.id  | trim:20 }}</div>
+          <div class="smaller-font">No. of games: {{ database.gamesTotal }}</div>
+          <div class="ownership" *ngIf="database.isShared === true">
+            Ownership: {{ database.ownerUsername }}</div>
+        </div>
+        <div class="db-panel">
+          <button (click)="clickedEditDatabase(database)" class="db-panel-button edit-button">
+            <i class="fa fa-wrench" aria-hidden="true"></i>
+          </button>
+          <button
+            class="db-panel-button"
+            [class.filtering-enabled]="filtersActive[database.name] === true"
+            (click)="clickedFilterDatabase(database)">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <hr [style.margin-bottom]="(chessDatabases.indexOf(database) != chessDatabases.length - 1) ? '5px' : '0'">
+    </div>
+    <div *ngIf="chessDatabases?.length === 0" class="no-dbs">
+      No databases! Create new one.
+    </div>
+    <chessdb-database-adder></chessdb-database-adder>
+  </div>
+
+  <div class="bottom-buttons">
+    <button chessdbButton
+            (click)="clickedLogout()"
+            [hasRightNeighbour]="true">
+      Logout <i class="fa fa-sign-out"></i>
+    </button>
+    <button chessdbButton
+            (click)="clickedToList()"
+            [hasRightNeighbour]="true"
+            [hasLeftNeighbour]="true">
+      Games <i class="fa fa-list" aria-hidden="true"></i>
+    </button>
+    <button chessdbButton
+            (click)="clickedToSettings()"
+            [hasLeftNeighbour]="true">
+      Settings <i class="fa fa-cog"></i>
+    </button>
+  </div>
+
+  <chessdb-round-button (click)="flipShowPanel()"
+                        class="flip-button-not-folded"
+                        [pointsToLeft]="true"></chessdb-round-button>
+</div>
+<div *ngIf="!showPanel" class="when-panel-folded">
+  <chessdb-round-button (click)="flipShowPanel()">
+  </chessdb-round-button>
+</div>
+
+<ng-template #spinner>
+  <div class="spinner-div">
+    <chessdb-loading [color]="'gray'" [size]="'38px'"></chessdb-loading>
+  </div>
+</ng-template>

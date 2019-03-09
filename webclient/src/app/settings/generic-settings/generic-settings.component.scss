@@ -1,0 +1,34 @@
+@import "../../../globals";
+
+:host {
+  .change-page-size-input {
+    @include no-spinners;
+  }
+  .change-page-size-button {
+    margin: 0;
+  }
+
+  .setting-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: $margin-small;
+  }
+
+  .setting-wrapper-div {
+    @include flex-full-centered;
+    flex-direction: column;
+    margin: $margin-big 0;
+  }
+
+  .bottom-panel {
+    @include bottom-panel;
+  }
+
+  .save-button {
+    margin: 0;
+  }
+
+  .all-settings-wrapper {
+    min-height: 330px;
+  }
+}

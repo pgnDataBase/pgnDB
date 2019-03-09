@@ -1,0 +1,11 @@
+
+<div class="change-header">
+  Change tree display to
+</div>
+<div class="scrollable-main">
+  <div *ngFor="let database of currentDatabases" (click)="databaseChosen.next(database)" class="database-choose">
+    {{ database.name | trim }}
+  </div>
+</div>
+<button chessdbButton class="cancel-button" (click)="cancelClicked.next()">Cancel</button>
+

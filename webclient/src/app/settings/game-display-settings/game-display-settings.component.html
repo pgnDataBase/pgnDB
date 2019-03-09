@@ -1,0 +1,78 @@
+<form #gameDisplayForm="ngForm">
+  <div class="all-settings-wrapper">
+    <div class="setting-wrapper-div">
+      <div class="setting-title">
+        Font size for move display
+      </div>
+      <input
+        chessdbInput
+        [(ngModel)]="moveFontSize"
+        #moveFontSizeForm="ngModel"
+        name="moveFontSize"
+        [minValue]="10"
+        [maxValue]="16"
+        type="number"
+        class="no-spinner-input">
+      <chessdb-input-error-list [errors]="moveFontSizeForm.errors"></chessdb-input-error-list>
+    </div>
+
+    <div class="setting-wrapper-div">
+      <div class="setting-title">
+        Font size for piece display
+      </div>
+      <input
+        chessdbInput
+        [(ngModel)]="pieceFontSize"
+        #pieceFontSizeForm="ngModel"
+        name="pieceFontSize"
+        type="number"
+        [minValue]="10"
+        [maxValue]="24"
+        class="no-spinner-input">
+      <chessdb-input-error-list [errors]="pieceFontSizeForm.errors"></chessdb-input-error-list>
+    </div>
+
+    <!-- VISUAL PIECE DISPLAY -->
+    <div class="setting-wrapper-div">
+      <div class="setting-title">
+        Display unicode chess pieces
+      </div>
+      <chessdb-boolean-buttons
+        (booleanClicked)="changeDisplayOfPieces($event)"
+        [initialValue]="pieceDisplay === 'VISUAL'">
+      </chessdb-boolean-buttons>
+    </div>
+
+    <!-- COLORED VARIANT BORDERS -->
+    <div class="setting-wrapper-div">
+      <div class="setting-title">
+        Colored variant borders
+      </div>
+      <chessdb-boolean-buttons
+        (booleanClicked)="coloredVariantBorders = $event"
+        [initialValue]="coloredVariantBorders">
+      </chessdb-boolean-buttons>
+    </div>
+
+    <!-- Comment text always visible -->
+    <div class="setting-wrapper-div">
+      <div class="setting-title">
+        Always display comment text
+      </div>
+      <chessdb-boolean-buttons
+        (booleanClicked)="commentsAlwaysVisible = $event"
+        [initialValue]="commentsAlwaysVisible">
+      </chessdb-boolean-buttons>
+    </div>
+  </div>
+  <div class="setting-wrapper-div">
+    <div class="bottom-panel">
+      <button actionButton class="save-button"
+              (click)="clickedSave()" [disabled]="gameDisplayForm.invalid">Save display settings
+      </button>
+    </div>
+  </div>
+</form>
+
+
+

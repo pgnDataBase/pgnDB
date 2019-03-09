@@ -1,0 +1,43 @@
+<form #genericSettings="ngForm">
+  <div class="all-settings-wrapper">
+    <!-- PAGE SIZE FOR GAMES -->
+    <div class="setting-wrapper-div">
+      <div class="setting-title">
+        Change page size for chess games list
+      </div>
+      <div>
+        <input [(ngModel)]="pageSize" type="number" [minValue]="1" name="listPageSize"
+               #listPageSize="ngModel"
+               chessdbInput class="change-page-size-input">
+      </div>
+      <chessdb-input-error-list [errors]="listPageSize.errors"></chessdb-input-error-list>
+    </div>
+
+    <!-- PAGINATION FOR IN GAME ENTITIES -->
+    <div class="setting-wrapper-div">
+      <div class="setting-title">
+        Change pagination size for moves in game
+      </div>
+      <div>
+        <input [(ngModel)]="movePageSize" [minValue]="1" name="movePageSizeForm" #movePageSizeForm="ngModel"
+               type="number" chessdbInput class="change-page-size-input">
+      </div>
+      <chessdb-input-error-list [errors]="movePageSizeForm.errors"></chessdb-input-error-list>
+    </div>
+
+    <div class="setting-wrapper-div">
+      <div class="setting-title">
+        Copy fen automatically when clicked
+      </div>
+      <chessdb-boolean-buttons (booleanClicked)="copyFenOnMove = $event"
+                               [initialValue]="copyFenOnMove"></chessdb-boolean-buttons>
+    </div>
+  </div>
+  <div class="setting-wrapper-div">
+    <div class="bottom-panel">
+      <button actionButton class="save-button"
+              (click)="clickedSave()" [disabled]="genericSettings.invalid">Save generic settings
+      </button>
+    </div>
+  </div>
+</form>

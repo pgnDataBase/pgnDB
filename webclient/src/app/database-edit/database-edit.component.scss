@@ -1,0 +1,74 @@
+@import "../../globals";
+
+:host {
+  padding: $padding-big;
+
+  .header {
+    @include top-panel;
+    margin-bottom: $margin-small;
+    padding: $padding-medium $padding-small;
+    max-width: 650px;
+    text-overflow: ellipsis;
+  }
+
+  .medium-padded {
+    padding: $padding-medium;
+  }
+
+  .min-height {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 500px;
+  }
+
+  .loading-div {
+    padding-left: 100px;
+    padding-top: 100px;
+  }
+
+  .delete-export {
+    display: flex;
+  }
+
+  .delete-wrapper {
+    min-width: 220px;
+    height: 100px;
+    @include  flex-full-centered;
+  }
+
+  .export-wrapper {
+    min-width: 220px;
+    height: 100px;
+    @include  flex-full-centered;
+  }
+
+  .export-db-button {
+    margin-left: $margin-medium;
+  }
+
+  .delete-db-button {
+    min-width: 180px;
+  }
+
+  div[separator] {
+    width: 100%;
+    height: 1px;
+    background-color: $light-gray;
+    margin: 0 $margin-huge;
+  }
+
+  .remove-own-button {
+    width: 190px;
+  }
+
+  .own-access-remove {
+    @include flex-full-centered;
+  }
+}

@@ -1,0 +1,69 @@
+@import "../../../globals";
+
+:host {
+  margin-left: $margin-huge;
+  height: 190px;
+  width: 220px;
+  @include flex-full-centered;
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header {
+    margin: $margin-small 0;
+  }
+
+  .scrollable-databases {
+    @include scroll-y-above(130px);
+    overflow-x: hidden;
+    min-height: 130px;
+    border: 1px solid $dark-gray;
+    box-shadow: $subtle-shadow;
+  }
+
+  .database {
+    padding: $padding-small $padding-medium;
+    cursor: pointer;
+    font-size: 13px;
+    width: 200px;
+    text-overflow: ellipsis;
+    &:not(.is-last) {
+      border-bottom: 1px solid $light-gray;
+    }
+
+    &:hover {
+      background-color: $bluish;
+      font-weight: 600;
+    }
+  }
+
+  .confirmation-wrapper {
+    width: 100%;
+    height: 100%;
+    @include flex-full-centered;
+    flex-direction: column;
+
+    .confirmation-title {
+      font-size: 13px;
+    }
+
+    .buttons {
+      @include flex-justified;
+    }
+
+    .yes-no-button {
+      width: 50px;
+    }
+  }
+
+  .no-other-dbs {
+    font-size: 15px;
+    color: $great-orange;
+    font-weight: 600;
+    padding: $padding-small $padding-medium;
+    width: 200px;
+  }
+}

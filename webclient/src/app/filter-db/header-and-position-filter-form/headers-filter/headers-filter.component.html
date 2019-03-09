@@ -1,0 +1,23 @@
+<div class="headers-filter">
+  <div class="scroll-wrapper">
+    <div *ngFor="let filter of headerFilters" class="filter-div">
+      <chessdb-header-autocomplete-input
+        (valueChanged)="filtersChanged()"
+        [(ngModel)]="filter.key"></chessdb-header-autocomplete-input>
+      <input chessdbInput class="header-filter-input"
+             placeholder="Header value" [(ngModel)]="filter.value" (keyup)="filtersChanged()">
+      <i class="fa fa-times delete-filter-icon" aria-hidden="true" (click)="deleteFilter(filter)"></i>
+    </div>
+  </div>
+  <div *ngIf="headerFilters.length === 0" class="no-filters-message">
+    <chessdb-info-message [messageType]="'warning'" [fontSize]="'20px'">
+      No header filters defined
+    </chessdb-info-message>
+  </div>
+  <div class="add-more-div">
+    <button class="add-move-button" (click)="addMoreHeaderFiltersClicked()">
+      Add header filter
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>

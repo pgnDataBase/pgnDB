@@ -1,0 +1,27 @@
+@import "../../../globals";
+
+:host {
+  .main {
+    display: flex;
+    justify-content: center;
+    margin: $margin-medium;
+    padding: $padding-big;
+    border-radius: 0.2em;
+  }
+
+  .info {
+    background-color: $green-guacamole;
+    border: 2px solid $green-cheese;
+  }
+
+  .warning {
+    background-color: $warning-color;
+    border: 2px solid $warning-color-darker;
+  }
+
+  .error {
+    background-color: $red-candy-apple;
+    border: 2px solid $red-scarlet;
+    color: $dark-white;
+  }
+}

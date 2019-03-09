@@ -1,0 +1,12 @@
+@import "../../globals";
+
+:host {
+  min-width: 600px;
+  .main {
+    padding: $padding-medium;
+    margin: $margin-big;
+  }
+  .settings-type-switch {
+    @include top-panel;
+  }
+}

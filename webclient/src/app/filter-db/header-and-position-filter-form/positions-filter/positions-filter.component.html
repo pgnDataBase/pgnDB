@@ -1,0 +1,36 @@
+<div class="position-filter">
+  <div class="board-and-fens">
+    <div id="board" class="chessboard-display"></div>
+    <div class="fen-inputs-div">
+      <div class="include-variants">
+          <input type="checkbox" [ngModel]="includeVariantsPosition"
+             (click)="includeVariantsChanged($event)">
+          <label class="include-variants-label">Include variants</label>
+      </div>
+      <div class="scrollable">
+        <div *ngFor="let fen of fenFilters; let i = index" class="flex-aligned">
+          <input chessdbInput class="fen-input" (change)="fenChangedFromInput($event, i)"
+                 [ngModel]="fenFilters[i]">
+          <i class="fa fa-times delete-fen" aria-hidden="true" (click)="deleteFenByIndex(i)"></i>
+        </div>
+      </div>
+      <button class="add-manually-button" (click)="addMoreManuallyClicked()">
+        Add more manually <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="position-filter-panel">
+    On move:
+    <div>
+      <chessdb-general-radio-buttons>
+        <chessdb-radio-button (click)="onMove = 'IGNORE'">Ignore</chessdb-radio-button>
+        <chessdb-radio-button (click)="onMove = 'WHITE'">White</chessdb-radio-button>
+        <chessdb-radio-button (click)="onMove = 'BLACK'">Black</chessdb-radio-button>
+      </chessdb-general-radio-buttons>
+    </div>
+    <div>
+      <button chessdbButton [hasRightNeighbour]="true" (click)="addPositionFilterFromBoard()" [width]="'60px'">Add</button>
+      <button chessdbButton [hasLeftNeighbour]="true" (click)="flipBoard()" [width]="'60px'">Flip</button>
+    </div>
+  </div>
+</div>

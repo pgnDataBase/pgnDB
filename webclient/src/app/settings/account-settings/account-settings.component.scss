@@ -1,0 +1,26 @@
+@import "../../../globals";
+
+:host {
+  .all-settings-wrapper {
+    min-height: 330px;
+  }
+
+  .setting-wrapper-div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: $margin-big 0;
+  }
+
+  .bottom-panel {
+    @include bottom-panel;
+    height: 38px;
+    margin-top: $margin-huge;
+  }
+
+  .account-delete-left-wrapper {
+    width: 180px;
+    height: 100px;
+    @include flex-full-centered;
+  }
+}

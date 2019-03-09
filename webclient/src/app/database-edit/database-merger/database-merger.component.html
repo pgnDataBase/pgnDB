@@ -1,0 +1,37 @@
+
+<ng-container *ngIf="!isMerging">
+  <div class="main" *ngIf="!askingConfirmation;else confirmation">
+    <h5 class="header">Add games from other database</h5>
+
+    <div class="scrollable-databases">
+      <ng-container *ngFor="let db of dbs;last as isLast">
+        <div (click)="dbToBeMerged = db; askingConfirmation = true;"
+             [class.is-last]="isLast"
+             *ngIf="db !== currentDatabase"
+             class="database">
+          {{ db.name }}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="dbs.length === 0">
+        <div class="no-other-dbs">
+          No other databases
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #confirmation>
+  <div class="confirmation-wrapper">
+    <div class="confirmation-title">Do you want to add games from {{ dbToBeMerged.name }} to {{ currentDatabase.name }}?</div>
+    <div class="buttons">
+      <button chessdbButton class="small-radius yes-no-button" (click)="confirmedMerge(dbToBeMerged)">Yes</button>
+      <button chessdbButton class="small-radius yes-no-button" (click)="askingConfirmation = false">No</button>
+    </div>
+  </div>
+</ng-template>
+
+<div *ngIf="isMerging">
+  <chessdb-loading [color]="'gray'" [loadingMessage]="'Merging...'" [size]="'28px'"></chessdb-loading>
+  <chessdb-status-bar [STATUS_TYPE]="'FILE'"></chessdb-status-bar>
+</div>

@@ -1,0 +1,39 @@
+@import "../../../../../globals";
+
+:host {
+  font-size: 12px;
+
+  .autocomplete-values {
+    position: absolute;
+    z-index: $z-index-popups;
+    font-weight: 600;
+    width: 180px;
+    background-color: $dark-white;
+    border: 1px solid $dark-gray;
+    border-top: 0;
+    box-shadow: $standard-shadow;
+    @include scroll-y-above(200px);
+  }
+
+  .input {
+    width: 170px;
+    margin-right: $margin-small;
+  }
+
+  .autocompletion-item {
+    cursor: pointer;
+    padding: $padding-small;
+  }
+
+  .not-last {
+    border-bottom: 1px solid $dark-gray;
+  }
+
+  .mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

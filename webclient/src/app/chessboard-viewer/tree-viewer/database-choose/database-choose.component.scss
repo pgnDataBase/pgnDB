@@ -1,0 +1,33 @@
+@import "../../../../globals";
+
+:host {
+  padding: $padding-small;
+  @include flex-aligned;
+  flex-direction: column;
+
+  .scrollable-main {
+    @include scroll-y-above(200px);
+  }
+
+  .change-header {
+    font-size: 16px;
+    margin-bottom: $margin-small;
+  }
+
+  .database-choose {
+    min-width: 200px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: $padding-small;
+    border-bottom: 1px solid $light-gray;
+
+    &:hover {
+      background-color: $light-gray-hover;
+    }
+  }
+
+  .cancel-button {
+    margin-top: $margin-medium;
+  }
+}

@@ -1,0 +1,104 @@
+@import "../../globals";
+
+
+:host {
+  @mixin main-screen-popup {
+    @include flex-aligned;
+    background-color: $dark-white;
+    flex-direction: column;
+    padding: $padding-huge;
+    border-radius: 0.3em;
+    border: 1px solid black;
+    box-shadow: $standard-shadow;
+  }
+
+
+  height: 100%;
+  .main-login-div {
+    background-color: $dark-gray;
+    width: 100%;
+    height: 100%;
+    @include flex-full-centered;
+  }
+
+  .login-form-label {
+    display: block;
+  }
+
+  .login-form-input {
+    width: 30em;
+  }
+
+  .label-input-div {
+    padding: $padding-small 0;
+    font-size: 18px;
+  }
+
+  .login-form-button-div {
+    padding-top: $padding-medium;
+    .login-button {
+      width: 150px;
+    }
+  }
+
+  .login-form {
+    @include main-screen-popup;
+
+    .link-container {
+      align-self: flex-end;
+    }
+
+    .link {
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: $margin-small;
+      color: $dark-blue;
+      cursor: pointer;
+      text-decoration: underline;
+      &:hover {
+        color: $dark-blue-lighter;
+      }
+    }
+  }
+
+  .welcome {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    margin-bottom: $margin-huge;
+  }
+
+  .username-taken {
+    border: 1px solid $red-scarlet;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .change-ip {
+    @include main-screen-popup;
+    padding: $padding-huge;
+  }
+
+  .new-ip-div {
+    display: flex;
+  }
+
+  .cancel-apply-ip {
+    width: 100px;
+  }
+
+  .type-ip {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: $margin-medium;
+  }
+
+  .ip-input {
+    width: 200px;
+  }
+}

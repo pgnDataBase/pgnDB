@@ -1,0 +1,30 @@
+@import "../../../globals";
+
+:host {
+  .main-div {
+    display: flex;
+    align-items: center;
+  }
+
+  .fat-font {
+    font-weight: 900;
+  }
+
+  .curr-page {
+    padding: $padding-small;
+  }
+
+  .input-in-between {
+    @include no-spinners;
+    margin-left: $margin-medium;
+    width: 50px;
+    height: 20px;
+  }
+
+  .goto-button {
+    margin: 0;
+    height: 32px;
+  }
+
+
+}

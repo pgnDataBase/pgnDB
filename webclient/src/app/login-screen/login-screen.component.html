@@ -1,0 +1,88 @@
+<div class="main-login-div" *ngIf="!showAboutScreen; else aboutScreen">
+  <ng-container *ngIf="!changingServerIp">
+    <form #loginForm="ngForm" class="login-form">
+      <div class="welcome">
+        <div>
+          <ng-container *ngIf="!createAccount">Login to pgnDB</ng-container>
+          <ng-container *ngIf="createAccount">Create pgnDB account</ng-container>
+        </div>
+        <div class="links">
+          <div class="link" (click)="showAboutScreen = true">
+            About pgnDB
+          </div>
+          <div class="link" (click)="changingServerIp = true">
+            Change server IP
+          </div>
+        </div>
+      </div>
+      <div class="link-container">
+        <div class="link" (click)="createAccount = !createAccount">
+          <ng-container *ngIf="!createAccount">Create account</ng-container>
+          <ng-container *ngIf="createAccount">Login</ng-container>
+        </div>
+      </div>
+
+      <div class="label-input-div">
+        <label class="login-form-label">
+          <ng-container *ngIf="!createAccount">Username</ng-container>
+          <ng-container *ngIf="createAccount">Choose username</ng-container>
+        </label>
+        <input ngModel
+               chessdbInput
+               name="username"
+               class="login-form-input"
+               [minLength]="6"
+               [maxLength]="20"
+               [class.username-taken]="createAccount && !loginAvailable"
+               (keyup)='createAccount && loginKeyUp.next($event.target.value)'
+               required #name="ngModel">
+        <chessdb-input-error-list [errors]="name.errors" *ngIf="!name.pristine">
+        </chessdb-input-error-list>
+        <chessdb-input-error-list *ngIf="createAccount"
+                                  [errors]="!loginAvailable ? {'usernameTaken': true} : null">
+        </chessdb-input-error-list>
+      </div>
+
+      <div class="label-input-div">
+        <label class="login-form-label">
+          <ng-container *ngIf="!createAccount">Password</ng-container>
+          <ng-container *ngIf="createAccount">Choose password</ng-container>
+        </label>
+        <input ngModel
+               chessdbInput
+               name="password"
+               class="login-form-input"
+               [minLength]="6"
+               [maxLength]="50"
+               required #password="ngModel" type="password">
+        <chessdb-input-error-list [errors]="password.errors"
+                                  *ngIf="!password.pristine"></chessdb-input-error-list>
+      </div>
+
+      <div class="login-form-button-div">
+        <button (click)="clickedConfirm(loginForm.value)"
+                actionButton class="login-button"
+                [disabled]="isPerformingAction || loginForm.invalid || (createAccount && !loginAvailable)">
+          <ng-container *ngIf="!createAccount">Login</ng-container>
+          <ng-container *ngIf="createAccount">Register</ng-container>
+        </button>
+      </div>
+    </form>
+  </ng-container>
+  <ng-container *ngIf="changingServerIp">
+    <div class="change-ip">
+      <div class="type-ip">Type in your server IP and port</div>
+      <chessdb-current-ip-displayer></chessdb-current-ip-displayer>
+      <div><input #serverip chessdbInput placeholder="eg. localhost:9095 (default)" class="ip-input"></div>
+      <div class="new-ip-div">
+        <button (click)="changingServerIp = false"
+                chessdbButton class="small-radius cancel-apply-ip">Cancel</button>
+        <button (click)="changeServerIp(serverip.value)" chessdbButton class="small-radius cancel-apply-ip">Apply</button>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #aboutScreen>
+  <chessdb-about-screen (aboutScreenClose)="showAboutScreen = false"></chessdb-about-screen>
+</ng-template>

@@ -1,0 +1,7 @@
+<ng-container *ngIf="!pointsToLeft">
+  <i class="fa fa-arrow-circle-o-right button-icon round-button" aria-hidden="true" (click)="clickedOnButton()"></i>
+</ng-container>
+<ng-container *ngIf="pointsToLeft">
+  <i class="fa fa-arrow-circle-o-left button-icon round-button" aria-hidden="true" (click)="clickedOnButton()"></i>
+</ng-container>
+

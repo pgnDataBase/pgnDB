@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.0.4.RELEASE"
+    }
+}
+
+apply plugin: "java"
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+group = "com.engwork.pgndb"
+version = "1.0.0"
+sourceCompatibility = 1.8
+
+bootJar {
+    destinationDir = file("$rootDir/deployment/build")
+    baseName = "pgndb"
+    version = null
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2")
+    implementation("com.zaxxer:HikariCP:3.2.0")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
+    implementation("javax.xml.bind:jaxb-api:2.2.4")
+    implementation("org.json:json:20180130")
+    implementation("com.squareup.okhttp3:okhttp-ws:3.4.2")
+    compileOnly("org.projectlombok:lombok:1.18.2")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.1.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.1.0")
+    runtime("org.postgresql:postgresql")
+}

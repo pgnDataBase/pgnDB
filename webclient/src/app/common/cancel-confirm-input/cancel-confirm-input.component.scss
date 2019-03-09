@@ -1,0 +1,51 @@
+@import "../../../globals.scss";
+
+:host {
+  .input-div {
+    display: flex;
+  }
+
+  .cancel {
+    display: flex;
+    align-items: start;
+    margin-top: 5px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: $red-scarlet;
+
+    &:hover:not(:disabled) {
+      cursor: pointer;
+      color: $vivid-tangerine;
+    }
+  }
+
+  .confirm {
+    display: flex;
+    align-items: start;
+    margin-top: 5px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: $green-cheese;
+
+    &:hover:not(:disabled) {
+      cursor: pointer;
+      color: $green-guacamole;
+    }
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  .name-input {
+    height: 10px;
+    border: 1px solid $light-gray;
+    &.ng-invalid.ng-dirty:not(.ng-pristine) {
+      border: 1px solid red;
+    }
+    &:focus {
+      border: 1px solid $blue-font-highlight;
+    }
+  }
+}

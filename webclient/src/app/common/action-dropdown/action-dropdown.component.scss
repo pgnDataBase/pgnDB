@@ -1,0 +1,82 @@
+@import "../../../globals";
+
+:host {
+  display: block;
+  .main-div {
+    font-size: 14px;
+    position: relative;
+  }
+
+  .title-text {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    padding: $padding-small;
+  }
+
+  .dropdown-button {
+    display: flex;
+    align-items: center;
+    border: 1px solid $dark-gray;
+    border-radius: 0.2em;
+    box-shadow: $standard-shadow;
+
+    &:active, &:focus {
+      outline: none;
+    }
+    &:hover:not(:disabled) {
+      cursor: pointer;
+      background-color: $dark-white-lighter;
+    }
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  .actions-visible {
+    background-color: $dark-white;
+  }
+
+  .dropdown-container {
+    font-size: 13px;
+    background-color: $dark-white;
+    position: absolute;
+    z-index: $z-index-dropdown;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0;
+    box-shadow: $standard-shadow;
+    .dropdown-action {
+      border-radius: 0;
+      &.action-disabled {
+        color: $disabled-font;
+        cursor: not-allowed;
+      }
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px $padding-big;
+
+      &:hover:not(.action-disabled) {
+        cursor: pointer;
+        background-color: $bluish;
+      }
+      .icon-container {
+        padding-right: $padding-small;
+      }
+    }
+  }
+
+  .not-last {
+    border-bottom: 1px solid $light-gray;
+  }
+
+  .mask {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+  }
+}

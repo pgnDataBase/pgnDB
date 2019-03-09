@@ -1,0 +1,20 @@
+<div *ngIf="!loading" class="main">
+  <h5 class="small-top-bottom-margin">Add games from file</h5>
+  <form (ngSubmit)="uploadPgnFile()" [formGroup]="form">
+    <input ng-model="fileUpload"
+           name="file"
+           type="file"
+           (change)="fileChange($event)"
+           class="file-input"
+           id="file"
+           #fileInput>
+    <label for="file" class="file-label">{{ fileToUpload ? fileToUpload.name : 'Choose a file' }}</label>
+    <button chessdbButton type="submit" [disabled]="fileToUpload == null">Upload</button>
+  </form>
+</div>
+<div *ngIf="loading">
+  <chessdb-loading [color]="'gray'" [size]="'28px'"
+                   [loadingMessage]="'Uploading...'">
+  </chessdb-loading>
+  <chessdb-status-bar [STATUS_TYPE]="'FILE'"></chessdb-status-bar>
+</div>

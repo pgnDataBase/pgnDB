@@ -1,0 +1,30 @@
+<div class="main-div">
+  <button (click)="toggleActionsVisible()"
+          class="dropdown-button"
+          [disabled]="dropdownDisabled"
+          [class.actions-visible]="actionsVisible">
+    <div class="title-text" *ngIf="titleText">
+      {{ titleText }}
+    </div>
+    <div>
+      <i class="fa {{mainIcon}}" aria-hidden="true"></i>
+    </div>
+  </button>
+
+  <ng-container *ngIf="actionsVisible">
+    <div class="dropdown-container" [style.width.px]="dropWidth">
+      <div class="dropdown-action"
+           (click)="actionClicked(action)"
+           *ngFor="let action of actions;let i=index"
+           [class.not-last]="i != (actions.length - 1)"
+           [class.action-disabled]="action.disabled">
+        <ng-container *ngIf="action.icon">
+          <i class="fa {{action.icon}} icon-container" aria-hidden="true"></i>
+        </ng-container>
+        <span>{{ action.display }}</span>
+      </div>
+    </div>
+  </ng-container>
+  <div class="mask" *ngIf="actionsVisible" (click)="actionsVisible = false">
+  </div>
+</div>

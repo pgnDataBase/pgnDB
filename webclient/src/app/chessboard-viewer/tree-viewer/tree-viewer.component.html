@@ -1,0 +1,85 @@
+<ng-container *ngIf="!isChoosingDatabase && !shouldShowEngines">
+  <div class="tree-wrapper" *ngIf="!isTreeBuilding; else treebuilding">
+    <div class="nodes-display" *ngIf="currentResponse != null; else nullresponse">
+      <div class="headers" *ngIf="currentResponse?.treeNodes?.length > 0">
+        <div class="move-count">Count</div>
+        <div class="move-san">San</div>
+        <div class="percentage">Percentage</div>
+      </div>
+      <div class="scrollable-wrapper" *ngIf="currentResponse?.treeNodes?.length > 0;else noresults">
+        <div *ngFor="let node of currentResponse?.treeNodes">
+          <div class="node-div" (click)="clickedOnNode(node)">
+            <div class="move-count">{{ node.moveCount }}</div>
+            <div class="move-san">{{ node.moveSan }}</div>
+            <div class="percentage">{{ node.percent }}</div>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
+    <div class="tree-panel">
+      <div class="panel">
+        <div class="tree-for">Tree for {{ currentTreeDB.name }}</div>
+        <div class="tree-not-actual" *ngIf="!currentResponse?.isTreeActual">Not up to date</div>
+        <div class="tree-actual" *ngIf="currentResponse?.isTreeActual">Up to date</div>
+        <!-- I don't think it is relevant information enough -->
+        <!--<div class="total" *ngIf="currentResponse?.total"> Total: {{ currentResponse.total }}</div>-->
+      </div>
+      <div class="panel bottom-panel">
+        <div *ngIf="!currentResponse?.isTreeWithVariants" class="no-variants">This tree does not include variants</div>
+        <div *ngIf="currentResponse?.isTreeWithVariants" class="with-variants">This tree includes variants</div>
+      </div>
+      <button chessdbButton (click)="isChoosingDatabase = true" class="tree-button">
+        Choose tree database
+      </button>
+      <button chessdbButton (click)="buildTreeClicked(false)" class="tree-button">
+        Rebuild tree
+      </button>
+      <button chessdbButton (click)="buildTreeClicked(true)" class="tree-button">
+        Rebuild with variants
+      </button>
+      <button chessdbButton (click)="refreshToStartPosition()" class="tree-button">
+        Refresh to start position
+      </button>
+      <button chessdbButton (click)="shouldShowEngines = true" class="tree-button" *ngIf="!shouldShowEngines">
+        Show chess engines
+      </button>
+      <button chessdbButton (click)="refreshPositionBack()" class="tree-button"
+              [disabled]="!(currentTreeNodePath.length > 0)">
+        <i class="fa fa-chevron-left button-icon" aria-hidden="true"></i> Step back
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isChoosingDatabase && !shouldShowEngines">
+  <div class="tree-wrapper">
+    <chessdb-database-choose
+      (cancelClicked)="isChoosingDatabase = false"
+      (databaseChosen)="onTreeDatabaseChange($event)"></chessdb-database-choose>
+  </div>
+</ng-container>
+
+<ng-template #treebuilding>
+  <div class="building-tree">
+    <chessdb-loading [color]="'gray'" [size]="'33px'"
+                     [loadingMessage]="'Building tree'" class="tree-status-spinner">
+    </chessdb-loading>
+    <chessdb-status-bar [STATUS_TYPE]="'TREE'" class="tree-status-bar"></chessdb-status-bar>
+  </div>
+</ng-template>
+
+<ng-template #nullresponse>No response, build or refresh</ng-template>
+<ng-template #noresults>
+  <div class="no-results">
+    No results...
+  </div>
+</ng-template>
+
+
+<div class="engines-wrapper" *ngIf="shouldShowEngines">
+  <chessdb-chess-engines-viewer *ngIf="shouldShowEngines"
+                                [currentMove]="currentMove"
+                                (closeButtonClicked)="shouldShowEngines = false">
+  </chessdb-chess-engines-viewer>
+</div>

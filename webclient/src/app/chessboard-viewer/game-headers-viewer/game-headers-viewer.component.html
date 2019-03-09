@@ -1,0 +1,117 @@
+<div *ngIf="pgnHeader" class="main-div">
+
+  <div class="details-header">
+    <span *ngIf="state === 'DISPLAY'">Details</span>
+    <span (click)="clickedInitEdit()" *ngIf="state === 'DISPLAY'">
+      <i class="fa fa-pencil-square-o edit-headers" aria-hidden="true"></i></span>
+    <span *ngIf="state === 'EDIT'">
+      <button
+        [disabled]="!validForSave()"
+        (click)="flipEditBasicOrAdditional()"
+        class="switch-edit-button">Edit
+        {{ editState === 'BASIC' ? 'additional' : 'basic' }}</button>
+    </span>
+    <span *ngIf="state === 'EDIT'">
+      <span (click)="clickedCancelEdit()">
+        <i class="fa fa-times cancel-edit" aria-hidden="true"></i>
+      </span>
+      <span
+        (click)="clickedConfirmEdit()"
+        [class.save-disabled]="!validForSave()">
+        <i class="fa fa-check confirm-edit" aria-hidden="true"></i>
+      </span>
+    </span>
+  </div>
+
+  <ng-container *ngIf="state === 'DISPLAY'">
+    <ng-container *ngFor="let basicKey of basicHeaderKeys">
+      <div class="detail">
+        <span class="display-header-key">
+          {{ basicKey }}:</span>
+        <span [class.empty-field]="!((pgnHeader[basicKey] != null && pgnHeader[basicKey].length > 0))">
+          {{ ((pgnHeader[basicKey] != null && pgnHeader[basicKey].length > 0) ?
+        pgnHeader[basicKey]  : 'Field empty') | trim:25 }}
+        </span>
+      </div>
+    </ng-container>
+
+    <ng-container *ngFor="let additionalKey of getAdditionalKeys(pgnHeader)">
+      <div class="detail">
+        <span class="display-header-key">{{ additionalKey }}:</span>
+        <span [class.empty-field]="!(pgnHeader.additional[additionalKey] != null && pgnHeader.additional[additionalKey].length > 0)">
+        {{ (pgnHeader.additional[additionalKey] != null && pgnHeader.additional[additionalKey].length > 0)
+        ? pgnHeader.additional[additionalKey] : 'Field empty'
+        | trim:25 }}
+        </span>
+        </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="state === 'EDIT'">
+    <ng-container  *ngIf="editState === 'BASIC'">
+      <div>
+      <ng-container *ngFor="let basicKey of basicHeaderKeys">
+        <div class="detail edit-row">
+          <label class="edit-header-label">{{ basicKey }}</label>
+          <div>
+            <input
+              chessdbInput
+              class="header-input"
+              name="{{basicKey}}"
+              #name="ngModel"
+              [maxLength]="getMaxLengthForKey(basicKey)"
+              [(ngModel)]="editHeaders[basicKey]">
+            <chessdb-input-error-list
+            [fontSize]="'10px'"
+            [errors]="name.errors"
+            *ngIf="!name.pristine"></chessdb-input-error-list>
+          </div>
+        </div>
+      </ng-container>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="editState === 'ADDITIONAL'">
+      <ng-container *ngFor="let additionalKey of getAdditionalKeys(editHeaders)">
+        <div class="detail edit-row-additional">
+
+          <div>
+            <label class="edit-header-label">{{ additionalKey | trim:30 }}</label>
+          </div>
+          <div class="additional-header-edit-input-row">
+            <input chessdbInput
+                   class="additional-header-input"
+                   name="{{additionalKey}}"
+                   #name="ngModel"
+                   [maxLength]="getMaxLengthForKey(additionalKey)"
+                   [(ngModel)]="editHeaders.additional[additionalKey]">
+            <i class="fa fa-times additional-header-delete"
+               aria-hidden="true" (click)="deleteAdditionalHeader(additionalKey)"></i>
+          </div>
+          <chessdb-input-error-list
+            [errors]="name.errors"
+            [fontSize]="'10px'"
+            *ngIf="!name.pristine"></chessdb-input-error-list>
+
+        </div>
+      </ng-container>
+
+
+      <div class="add-header-row">
+        <button class="add-header-button"
+                *ngIf="addHeadersState === 'INIT'"
+                (click)="clickedAddMoreHeaders()">
+          Add more <i class="fa fa-plus" aria-hidden="true"></i></button>
+        <chessdb-cancel-confirm-input
+          (clickedCancelInput)="addHeadersState = 'INIT'"
+          [placeholder]="'Enter new header name'"
+          (clickedConfirmInput)="addNewHeader($event)"
+          *ngIf="addHeadersState === 'ADDING'">
+        </chessdb-cancel-confirm-input>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div *ngIf="state === 'LOADING'" class="loading">
+    <chessdb-loading [size]="'40px'"></chessdb-loading>
+  </div>
+</div>

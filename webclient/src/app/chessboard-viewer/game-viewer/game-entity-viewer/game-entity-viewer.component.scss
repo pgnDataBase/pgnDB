@@ -1,0 +1,80 @@
+@import "../../../../globals";
+
+:host {
+  position: relative;
+  .selected {
+    background-color: $light-gray;
+  }
+
+  display: flex;
+  font-size: 12px;
+  .main-div {
+    border: 1px solid #d9dad9;
+    padding: $padding-small;
+    display: flex;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .main-info {
+      padding: 2px;
+      .move {
+        padding: $padding-mini;
+        font-weight: 700;
+      }
+    }
+    .comment-div {
+      @include flex-aligned;
+      border-left: 1px solid $light-gray;
+      .comment-icon {
+        margin-left: $margin-mini;
+        color: $intense-green;
+        &:hover {
+          color: $green-guacamole;
+        }
+      }
+    }
+  }
+  .variant-beginning {
+    border-radius: 1em 0 0 1em;
+  }
+  .variant-end {
+    border-radius: 0 1em 1em 0;
+  }
+  .variant-single {
+    border-radius: 1em 1em 1em 1em;
+  }
+  .variant-info {
+    font-weight: 700;
+    font-size: 8px;
+    font-style: italic;
+  }
+  .move-number {
+    font-weight: 600;
+    color: $dark-gray;
+  }
+  .to-field {
+    font-weight: 400;
+  }
+  .piece-unicode-display {
+    line-height: 1;
+    font-size: 18px;
+  }
+
+  .comment-text {
+    padding-left: $padding-small;
+  }
+
+  .edit-comment-input {
+    width: 200px;
+    margin: 0 0 0 $margin-small;
+    padding: $padding-mini;
+    font-size: 10px;
+  }
+
+
+  .variant-end-marker {
+    min-width: 10px;
+  }
+}

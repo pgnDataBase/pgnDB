@@ -1,0 +1,8 @@
+<chessdb-plain-row-display
+  [values]="[game.White, game.Black, game.Result,
+     game.Site, game.Event, game.Round]"
+  (click)="clickedOnRow()"
+  [clickable]="true">
+  <input type='checkbox' (click)="checkedRow($event, game.gameId)">
+</chessdb-plain-row-display>
+

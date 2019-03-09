@@ -1,0 +1,57 @@
+@import "../../../../globals";
+
+:host {
+  margin: $margin-medium;
+
+  .headers-filter {
+    padding-right: $padding-medium;
+    margin: $margin-medium;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .scroll-wrapper {
+    @include scroll-y-above(350px);
+  }
+
+  .header-filter-title {
+    display: flex;
+    justify-content: center;
+  }
+
+  .filter-div {
+    margin-bottom: $margin-small;
+    display: flex;
+    align-items: center;
+  }
+
+  .no-filters-message {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .delete-filter-icon {
+    padding-left: $padding-small;
+    &:hover:not(:disabled) {
+      cursor: pointer;
+      color: $dark-gray;
+    }
+  }
+
+  .add-more-div {
+    margin-top: $margin-small;
+    display: flex;
+    justify-content: center;
+
+    .add-move-button {
+      @include green-transparent-button;
+    }
+  }
+
+  .header-filter-input {
+    width: 170px;
+  }
+}

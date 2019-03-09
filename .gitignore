@@ -1,0 +1,17 @@
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+pgndb.iml
+.idea
+/out/
+
+config.json
